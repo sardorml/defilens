@@ -13,6 +13,7 @@ export default function ProtocolListItem({ protocol }: { protocol: Protocol }) {
             width={40}
             height={40}
             className="rounded-lg"
+            loading="lazy"
           />
         </div>
         <div className="flex flex-col">
