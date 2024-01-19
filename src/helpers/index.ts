@@ -33,6 +33,67 @@ export function filterTVLHistoryDataPoints(data: TVLHistoryDataPoint[]) {
   });
   return sortedData;
 }
+// Write a function that takes in an array of TVLHistoryDataPoint array and returns data for filter options 30 days, 90 days, 180 days
+export function filterTVLHistoryDataPointsByDays(
+  data: TVLHistoryDataPoint[],
+  filter: string
+) {
+  const sortedData = data.sort((a, b) => a.date - b.date);
+  const filteredData30 = sortedData.filter((dataPoint, index, array) => {
+    const date = new Date(dataPoint.date * 1000);
+    const today = new Date();
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(today.getDate() - 30);
+    return date > thirtyDaysAgo;
+  });
+  const filteredData90 = sortedData.filter((dataPoint, index, array) => {
+    const date = new Date(dataPoint.date * 1000);
+    const today = new Date();
+    const ninetyDaysAgo = new Date();
+    ninetyDaysAgo.setDate(today.getDate() - 90);
+    return date > ninetyDaysAgo;
+  });
+  const filteredData180 = sortedData.filter((dataPoint, index, array) => {
+    const date = new Date(dataPoint.date * 1000);
+    const today = new Date();
+    const oneHundredEightyDaysAgo = new Date();
+    oneHundredEightyDaysAgo.setDate(today.getDate() - 180);
+    return date > oneHundredEightyDaysAgo;
+  });
+  const filteredData365 = sortedData.filter((dataPoint, index, array) => {
+    const date = new Date(dataPoint.date * 1000);
+    const today = new Date();
+    const oneHundredEightyDaysAgo = new Date();
+    oneHundredEightyDaysAgo.setDate(today.getDate() - 365);
+    return date > oneHundredEightyDaysAgo;
+  });
+  console.log("filter helper", filter);
+  if (filter === "30") {
+    return filteredData30;
+  } else if (filter === "90") {
+    return filteredData90;
+  } else if (filter === "180") {
+    return filteredData180;
+  } else if (filter === "365") {
+    return filteredData365;
+  } else {
+    return sortedData;
+  }
+}
+
+// Write a function that takes in an array of TVLHistoryDataPoint array and returns starting date and end date in the format of DD, MMM YYYY
+export function getTVLHistoryDataPointsDateRange(data: TVLHistoryDataPoint[]) {
+  const sortedData = data.sort((a, b) => a.date - b.date);
+  const startDate = new Date(sortedData[0].date * 1000);
+  const endDate = new Date(sortedData[sortedData.length - 1].date * 1000);
+  const startDay = startDate.getDate();
+  const startMonth = startDate.toLocaleString("default", { month: "short" });
+  const startYear = startDate.getFullYear();
+  const endDay = endDate.getDate();
+  const endMonth = endDate.toLocaleString("default", { month: "short" });
+  const endYear = endDate.getFullYear();
+  return `${startDay}, ${startMonth} ${startYear} - ${endDay}, ${endMonth} ${endYear}`;
+}
 
 // Write a function that takes in a number and returns a string with a + or - sign and returns a string with 2 decimal places and a % sign and returns 0 if it is null
 export function formatPercentChange(number: number) {
