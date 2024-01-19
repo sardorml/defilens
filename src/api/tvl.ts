@@ -1,3 +1,5 @@
+import { get } from "http";
+
 export type Protocol = {
   id: string;
   name: string;
@@ -64,8 +66,16 @@ export type Protocol = {
   total_liquidations_24h_usd: number;
 };
 
-export default async function getAllProtocols() {
+export async function getAllProtocols() {
   const response = await fetch("https://api.llama.fi/protocols");
   const data = await response.json();
   return data;
 }
+
+export async function getHistoricalChainTVL() {
+  const response = await fetch("https://api.llama.fi/v2/historicalChainTvl");
+  const data = await response.json();
+  return data;
+}
+
+export default { getAllProtocols, getHistoricalChainTVL };
