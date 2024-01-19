@@ -1,23 +1,23 @@
-"use client";
-
-import { Protocol, getAllProtocols } from "@/api/tvl";
-import { useState, useEffect } from "react";
+import {
+  getAllProtocols,
+  getHistoricalChainTVL,
+  Protocol,
+  TVLHistoryDataPoint,
+} from "@/api/tvl";
 import TVLChart from "@/components/home/TVLChart";
 import ProtocolListItem from "@/components/home/ProtocolListItem";
 
-export default function Home() {
-  const [protocols, setProtocols] = useState([] as Protocol[]);
-  useEffect(() => {
-    getAllProtocols().then((protocols) => setProtocols(protocols));
-  }, []);
-
+export default async function Home() {
+  // const [protocols, setProtocols] = useState([] as Protocol[]);
+  const protocols: Protocol[] = await getAllProtocols();
+  const historicalTVL: TVLHistoryDataPoint[] = await getHistoricalChainTVL();
   return (
     <>
       <div className="w-full">
-        <TVLChart />
+        <TVLChart data={historicalTVL} />
       </div>
       {protocols.map((protocol) => (
-        <ProtocolListItem protocol={protocol} />
+        <ProtocolListItem key={protocol.id} protocol={protocol} />
       ))}
     </>
   );

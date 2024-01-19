@@ -4,7 +4,7 @@ import { formatPercentChange } from "@/helpers";
 
 export default function ProtocolListItem({ protocol }: { protocol: Protocol }) {
   return (
-    <div className="flex items-center justify-between" key={protocol.id}>
+    <div className="flex items-center justify-between">
       <div className="flex items-center">
         <div className="w-10 h-10 mr-3">
           <Image
@@ -12,6 +12,7 @@ export default function ProtocolListItem({ protocol }: { protocol: Protocol }) {
             alt={protocol.name}
             width={40}
             height={40}
+            className="rounded-lg"
           />
         </div>
         <div className="flex flex-col">

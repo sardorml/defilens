@@ -1,9 +1,8 @@
-// export function timestampToDateString(timestamp: number) {
-//   const date = new Date(timestamp * 1000);
-//   return date.getFullYear().toString();
-// }
-
-export function numberToWord(number: number) {
+import { TVLHistoryDataPoint } from "@/api/tvl";
+export function numberToWord(number: number | undefined) {
+  if (number === undefined) {
+    return "0";
+  }
   if (number > 1000000000) {
     return (number / 1000000000).toFixed(1) + "B";
   } else if (number > 1000000) {
@@ -14,11 +13,6 @@ export function numberToWord(number: number) {
     return number.toString();
   }
 }
-
-export type TVLHistoryDataPoint = {
-  date: number;
-  tvl: number;
-};
 
 // Write a function that takes in an array of TVLHistoryDataPoint array and returns only 12 data points per year
 // 1. Sort the array by date

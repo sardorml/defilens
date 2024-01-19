@@ -1,5 +1,3 @@
-import { get } from "http";
-
 export type Protocol = {
   id: string;
   name: string;
@@ -64,6 +62,11 @@ export type Protocol = {
   total_liquidations_usd: number;
   total_liquidations_24h: number;
   total_liquidations_24h_usd: number;
+};
+
+export type TVLHistoryDataPoint = {
+  date: number;
+  tvl: number;
 };
 
 export async function getAllProtocols() {
