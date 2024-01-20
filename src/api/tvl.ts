@@ -21,7 +21,12 @@ export type TVLHistoryDataPoint = {
 export async function getAllProtocols() {
   const response = await fetch("https://api.llama.fi/protocols");
   const data = await response.json();
-  return data;
+  // remove all categories that are CEX
+  const filteredData = data.filter((protocol: Protocol) => {
+    return protocol.category !== "CEX";
+  });
+
+  return filteredData;
 }
 
 export async function getHistoricalChainTVL() {
