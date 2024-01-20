@@ -54,11 +54,10 @@ const CustomTooltip = ({
 }: TooltipProps<ValueType, NameType>) => {
   if (active) {
     return (
-      <div className="custom-tooltip bg-teal-200/50 p-5 rounded-lg">
+      <div className="custom-tooltip bg-white/90 p-3 rounded-lg shadow-sm">
         <p className="label">{`${timestampToDateString(label)} : ${numberToWord(
           payload?.[0]?.value as number
         )}`}</p>
-        <p className="desc">Anything you want can be displayed here.</p>
       </div>
     );
   }
@@ -72,7 +71,6 @@ export default function ChartArea({ data }: { data: TVLHistoryDataPoint[] }) {
   const dateRange = getTVLHistoryDataPointsDateRange(filteredData);
 
   useEffect(() => {
-    console.log("selectedFilter", selectedFilter);
     if (selectedFilter === "all") {
       setFilteredData(data);
     } else {
@@ -85,10 +83,10 @@ export default function ChartArea({ data }: { data: TVLHistoryDataPoint[] }) {
   };
 
   return (
-    <>
+    <div className="w-full h-full">
       <div className="flex justify-between mb-5">
         <div>
-          <span>{dateRange}</span>
+          <span className="font-bold">{dateRange}</span>
         </div>
         <FilterOptions
           options={filterOptions}
@@ -102,7 +100,7 @@ export default function ChartArea({ data }: { data: TVLHistoryDataPoint[] }) {
             <CartesianGrid
               vertical={false}
               strokeDasharray="0"
-              stroke="#cbd5e1"
+              stroke="#e2e8f0"
             />
             <XAxis
               axisLine={false}
@@ -124,12 +122,12 @@ export default function ChartArea({ data }: { data: TVLHistoryDataPoint[] }) {
               isAnimationActive={false}
               type="monotone"
               dataKey="tvl"
-              stroke="#34d399"
-              fill="#d1fae5"
+              stroke="#10b981"
+              fill="#34d399"
             />
           </AreaChart>
         </ResponsiveContainer>
       </div>
-    </>
+    </div>
   );
 }

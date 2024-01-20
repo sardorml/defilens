@@ -17,12 +17,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="font-sans antialiased bg-zinc-50">
+    <html lang="en" className="dark">
+      <body className="font-sans antialiased">
         <Navigation />
-        <div className="mx-auto flex max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl ">
           <div className="w-56 hidden lg:block">
             <SideMenu />
+            <div className="fixed bottom-12">
+              <div className="flex flex-col">
+                <span className="text-md text-slate-600">Twitter</span>
+                <span className="text-md text-slate-600">Github</span>
+              </div>
+            </div>
           </div>
           <div className="mt-10 w-full">{children}</div>
         </div>

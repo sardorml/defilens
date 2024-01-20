@@ -64,19 +64,19 @@ export default function SideMenu() {
     >;
     active: boolean;
   }) {
-    const activeClass = active ? " text-slate-950" : "";
+    const activeClass = active ? " text-slate-950" : " text-slate-500";
     return (
       <Link href={link} className="flex items-center my-2 cursor-pointer group">
-        <div className="bg-teal-200/50 p-[5px] rounded-lg">
+        {/* Icon */}
+        <div className="bg-stone-200/50 p-[5px] rounded-lg">
           {React.createElement(icon, {
-            className:
-              "h-6 w-6 text-slate-500 group-hover:text-slate-950" + activeClass,
+            className: "h-6 w-6 group-hover:text-slate-950 text-slate-950",
           })}
         </div>
+        {/* Menu name */}
         <span
           className={
-            "ml-2 text-md text-slate-500 group-hover:text-slate-950" +
-            activeClass
+            "ml-2 text-md font-medium group-hover:text-slate-950" + activeClass
           }
         >
           {name}
