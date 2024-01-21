@@ -26,7 +26,7 @@ export default function TopProtocolsCard({
   topProtocols: Protocol[];
 }) {
   return (
-    <div className="hidden lg:block h-[95%] w-80 rounded-lg ml-5 shadow-sm px-3 py-5 border border-slate-100">
+    <div className="hidden lg:block h-[95%] w-80 rounded-lg mr-5 shadow-sm px-3 py-5 border border-slate-100">
       <p className="text-lg font-bold text-slate-900 mb-5">Top Protocols</p>
       <div>
         {topProtocols.map((protocol) => (

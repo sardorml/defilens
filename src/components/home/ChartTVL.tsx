@@ -44,8 +44,8 @@ export default async function ChartTVL({
       </div>
 
       <div className="grid grid-flow-col mb-5">
-        <ChartArea data={historicalTVL} />
         <TopProtocolsCard topProtocols={topProtocols} />
+        <ChartArea data={historicalTVL} />
       </div>
     </div>
   );
