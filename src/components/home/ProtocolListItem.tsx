@@ -1,7 +1,12 @@
 import { Protocol } from "@/api/tvl";
 import Image from "next/image";
 import { formatPercentChange } from "@/helpers";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ChevronRightIcon,
+  BookmarkIcon,
+} from "@heroicons/react/24/outline";
 
 export const percentageChangeIcon = (change: number) => {
   if (change > 0) {
@@ -31,8 +36,9 @@ export default function ProtocolListItem({
   };
 
   return (
-    <div className="grid grid-cols-12 hover:bg-slate-100">
-      <div className="col-span-1 flex items-center justify-center">
+    <div className="grid grid-cols-12 hover:bg-slate-100 rounded-lg">
+      <div className="col-span-1 flex items-center justify-center relative">
+        <BookmarkIcon className="h-6 w-6 text-color-slate-700 absolute left-1 hidden lg:block cursor-pointer" />
         <span className="text-lg text-slate-600">{index}</span>
       </div>
       <div className="col-span-6 lg:col-span-4 flex items-center">
@@ -71,18 +77,23 @@ export default function ProtocolListItem({
           {formatPercentChange(protocol.change_1d)}%
         </span>
       </div>
-      <div className="col-span-5 lg:col-span-3 flex flex-col text-end mr-4">
-        <span className="text-lg text-slate-600">
-          ${parseInt(protocol.tvl.toFixed(0)).toLocaleString()}
-        </span>
-        <div className="flex justify-end items-center">
-          {percentageChangeIcon(protocol.change_7d)}{" "}
-          <span
-            className={"text-md" + percentageChangeClasses(protocol.change_7d)}
-          >
-            {formatPercentChange(protocol.change_7d, true)}%
+      <div className="col-span-5 lg:col-span-3 flex items-center justify-end mr-4">
+        <div className="flex flex-col text-end">
+          <span className="text-lg text-slate-600">
+            ${parseInt(protocol.tvl.toFixed(0)).toLocaleString()}
           </span>
+          <div className="flex justify-end items-center">
+            {percentageChangeIcon(protocol.change_7d)}{" "}
+            <span
+              className={
+                "text-md" + percentageChangeClasses(protocol.change_7d)
+              }
+            >
+              {formatPercentChange(protocol.change_7d, true)}%
+            </span>
+          </div>
         </div>
+        <ChevronRightIcon className="w-6 h-6 text-slate-500 ml-5 cursor-pointer" />
       </div>
     </div>
   );

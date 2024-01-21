@@ -21,11 +21,11 @@ export default function SideMenu() {
       link: "/",
       icon: HomeIcon,
     },
-    {
-      name: "TVL",
-      link: "/tvl",
-      icon: ChartBarIcon,
-    },
+    // {
+    //   name: "TVL",
+    //   link: "/tvl",
+    //   icon: ChartBarIcon,
+    // },
     {
       name: "Stablecoins",
       link: "/stablecoins",

@@ -7,6 +7,41 @@ import { Transition } from "@headlessui/react";
 import ProtocolListItem from "@/components/home/ProtocolListItem";
 import SkeletonList from "../skeleton/SkeletonList";
 
+function TableHeader() {
+  return (
+    <div className="grid grid-cols-12 border-b border-slate-200 mb-3 pb-2 sticky top-16 bg-white z-[9]">
+      <div className="col-span-1 flex items-center justify-center">
+        <span className="text-lg text-slate-600 font-medium">#</span>
+      </div>
+      <div className="col-span-6 lg:col-span-4 flex items-center">
+        <div className="flex flex-col">
+          <span className="text-lg text-slate-600 font-medium">
+            Protocol name
+          </span>
+          <span className="text-md text-slate-400 font-medium">Category</span>
+        </div>
+      </div>
+      <div className="hidden lg:block col-span-2">
+        <span className="flex items-center h-full font-medium">1 Hour</span>
+      </div>
+      <div className="hidden lg:block col-span-2">
+        <span className="flex items-center h-full font-medium">1 Day</span>
+      </div>
+      <div className="col-span-5 lg:col-span-3 flex justify-end text-end mr-4">
+        <div className="flex flex-col">
+          <span className="text-lg text-slate-600 font-medium">
+            Value locked
+          </span>
+          <span className="text-md text-slate-400 font-medium">
+            7 Day change
+          </span>
+        </div>
+        <div className="w-6 ml-5"></div>
+      </div>
+    </div>
+  );
+}
+
 export default function Protocols({ data }: { data: Protocol[] }) {
   const [protocols, setProtocols] = useState(data.slice(0, 20));
   const [isLoading, setIsLoading] = useState(true);
@@ -78,33 +113,7 @@ export default function Protocols({ data }: { data: Protocol[] }) {
           placeholder="Search protocol"
         />
       </div>
-      <div className="grid grid-cols-12 border-b border-slate-200 mb-3 pb-2 sticky top-20 bg-white">
-        <div className="col-span-1 flex items-center justify-center">
-          <span className="text-lg text-slate-600 font-medium">#</span>
-        </div>
-        <div className="col-span-6 lg:col-span-4 flex items-center">
-          <div className="flex flex-col">
-            <span className="text-lg text-slate-600 font-medium">
-              Protocol name
-            </span>
-            <span className="text-md text-slate-400 font-medium">Category</span>
-          </div>
-        </div>
-        <div className="hidden lg:block col-span-2">
-          <span className="flex items-center h-full font-medium">1 Hour</span>
-        </div>
-        <div className="hidden lg:block col-span-2">
-          <span className="flex items-center h-full font-medium">1 Day</span>
-        </div>
-        <div className="col-span-5 lg:col-span-3 flex flex-col text-end mr-4">
-          <span className="text-lg text-slate-600 font-medium">
-            Value locked
-          </span>
-          <span className="text-md text-slate-400 font-medium">
-            7 Day change
-          </span>
-        </div>
-      </div>
+      <TableHeader />
       {isLoading
         ? [0, 1, 2, 3, 4].map((item) => <SkeletonList key={item} />)
         : renderProtocols()}
