@@ -1,14 +1,38 @@
-import { getAllProtocols, Protocol } from "@/api/tvl";
+"use client";
+
+import {
+  getAllProtocols,
+  getHistoricalChainTVL,
+  ProtocolTVL,
+  TVLHistoryDataPoint,
+} from "@/api/tvl";
 import ChartTVL from "@/components/home/ChartTVL";
 import Protocols from "@/components/home/Protocols";
+import { useEffect, useState } from "react";
 
-export default async function Home() {
-  const protocols: Protocol[] = await getAllProtocols();
-  const topProtocols = protocols.slice(0, 5);
+export default function Home() {
+  const [protocols, setProtocols] = useState<ProtocolTVL[]>([]);
+  const [historicalTVL, setHistoricalTVL] = useState<TVLHistoryDataPoint[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([getAllProtocols(), getHistoricalChainTVL()]).then(
+      ([protocols, historicalTVL]) => {
+        setProtocols(protocols);
+        setHistoricalTVL(historicalTVL);
+        setIsLoading(false);
+      }
+    );
+  }, []);
+
   return (
     <>
-      <ChartTVL topProtocols={topProtocols} />
-      <Protocols data={protocols} />
+      <ChartTVL
+        historicalTVL={historicalTVL}
+        topProtocols={protocols.slice(0, 5)}
+        isLoading={isLoading}
+      />
+      <Protocols protocols={protocols} isLoading={isLoading} />
     </>
   );
 }

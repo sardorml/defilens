@@ -1,7 +1,7 @@
-import { Protocol } from "@/api/tvl";
+import { ProtocolTVL } from "@/api/tvl";
 import { numberToWord } from "@/helpers";
 
-function Protocol({ protocol }: { protocol: Protocol }) {
+function Protocol({ protocol }: { protocol: ProtocolTVL }) {
   return (
     <div className="flex justify-between items-center mb-2 cursor-pointer hover:bg-slate-100 rounded-lg px-2">
       <div className="flex items-center">
@@ -21,15 +21,15 @@ function Protocol({ protocol }: { protocol: Protocol }) {
 }
 
 export default function TopProtocolsCard({
-  topProtocols,
+  protocols,
 }: {
-  topProtocols: Protocol[];
+  protocols: ProtocolTVL[];
 }) {
   return (
     <div className="hidden lg:block h-[95%] w-80 rounded-lg mr-5 shadow-sm px-3 py-5 border border-slate-100">
       <p className="text-lg font-bold text-slate-900 mb-5">Top Protocols</p>
       <div>
-        {topProtocols.map((protocol) => (
+        {protocols.slice(0, 5).map((protocol) => (
           <Protocol protocol={protocol} key={protocol.id} />
         ))}
       </div>

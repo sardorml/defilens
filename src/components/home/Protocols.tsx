@@ -1,11 +1,9 @@
 "use client";
-
-import { Protocol } from "@/api/tvl";
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Transition } from "@headlessui/react";
 import ProtocolListItem from "@/components/home/ProtocolListItem";
-import SkeletonList from "../skeleton/SkeletonList";
+import { SkeletonList } from "../skeleton/SkeletonList";
+import { ProtocolTVL } from "@/api/tvl";
 
 function TableHeader() {
   return (
@@ -42,19 +40,24 @@ function TableHeader() {
   );
 }
 
-export default function Protocols({ data }: { data: Protocol[] }) {
-  const [protocols, setProtocols] = useState(data.slice(0, 20));
-  const [isLoading, setIsLoading] = useState(true);
-  // Simulate loading
-  setTimeout(() => {
-    setIsLoading(false);
-  }, 100);
+interface ProtocolsProps {
+  protocols: ProtocolTVL[];
+  isLoading: boolean;
+}
+
+export default function Protocols({ protocols, isLoading }: ProtocolsProps) {
+  const [length, setLength] = useState(20);
 
   async function loadMoreData() {
-    setProtocols((prevProtocols) => data.slice(0, prevProtocols.length + 20));
+    setLength((prevValue) => prevValue + 20);
+  }
+
+  function getProtocols(length: number) {
+    return protocols.slice(0, length);
   }
 
   useEffect(() => {
+    // console.log("Protocols", data);
     const handleScroll = () => {
       // Check if the user has reached the end of the screen
       if (
@@ -84,7 +87,7 @@ export default function Protocols({ data }: { data: Protocol[] }) {
   };
 
   function renderProtocols() {
-    return protocols.map((protocol, index) => (
+    return getProtocols(length).map((protocol, index) => (
       <Transition
         appear={true}
         show={true}

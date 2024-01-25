@@ -17,12 +17,12 @@ import {
 import {
   timestampToDateString,
   numberToWord,
-  filterTVLHistoryDataPointsByDays,
   getTVLHistoryDataPointsDateRange,
 } from "@/helpers";
 import { TVLHistoryDataPoint } from "@/api/tvl";
 import { useEffect, useState } from "react";
 import FilterOptions from "@/components/home/ChartFilterSelector";
+import { useTVLContext } from "@/contexts/tvlContext";
 
 const filterOptions = [
   {
@@ -65,22 +65,18 @@ const CustomTooltip = ({
   return null;
 };
 
-export default function ChartArea({ data }: { data: TVLHistoryDataPoint[] }) {
-  let [selectedFilter, setSelectedFilter] = useState("all");
-  const [filteredData, setFilteredData] = useState(data);
-  const dateRange = getTVLHistoryDataPointsDateRange(filteredData);
+export default function ChartArea({
+  data: historicalTVL,
+  handleFilterChange,
+}: {
+  data: TVLHistoryDataPoint[];
+  handleFilterChange: (value: string) => void;
+}) {
+  const [dateRange, setDateRange] = useState("");
 
   useEffect(() => {
-    if (selectedFilter === "all") {
-      setFilteredData(data);
-    } else {
-      setFilteredData(filterTVLHistoryDataPointsByDays(data, selectedFilter));
-    }
-  }, [selectedFilter]);
-
-  const handleFilterChange = (value: string) => {
-    setSelectedFilter(value);
-  };
+    // setDateRange(getTVLHistoryDataPointsDateRange(historicalTVL));
+  }, []);
 
   return (
     <div className="w-full h-full">
@@ -90,13 +86,12 @@ export default function ChartArea({ data }: { data: TVLHistoryDataPoint[] }) {
         </div>
         <FilterOptions
           options={filterOptions}
-          selected={selectedFilter}
           handleFilterChange={handleFilterChange}
         />
       </div>
       <div style={{ width: "100%", height: 300 }}>
         <ResponsiveContainer>
-          <AreaChart data={filteredData}>
+          <AreaChart data={historicalTVL}>
             <CartesianGrid
               vertical={false}
               strokeDasharray="0"
@@ -111,7 +106,7 @@ export default function ChartArea({ data }: { data: TVLHistoryDataPoint[] }) {
             <YAxis
               axisLine={false}
               tickLine={false}
-              dataKey="tvl"
+              dataKey="value"
               tickFormatter={(tvl) => numberToWord(tvl)}
             />
             <Tooltip
@@ -121,7 +116,7 @@ export default function ChartArea({ data }: { data: TVLHistoryDataPoint[] }) {
             <Area
               isAnimationActive={false}
               type="monotone"
-              dataKey="tvl"
+              dataKey="value"
               stroke="#10b981"
               fill="#34d399"
             />

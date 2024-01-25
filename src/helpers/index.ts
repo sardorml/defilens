@@ -1,6 +1,6 @@
 import { TVLHistoryDataPoint } from "@/api/tvl";
 export function numberToWord(number: number | undefined) {
-  if (number === undefined) {
+  if (number === null || number === undefined) {
     return "0";
   }
   if (number > 1000000000) {
@@ -82,6 +82,9 @@ export function filterTVLHistoryDataPointsByDays(
 
 // Write a function that takes in an array of TVLHistoryDataPoint array and returns starting date and end date in the format of DD, MMM YYYY
 export function getTVLHistoryDataPointsDateRange(data: TVLHistoryDataPoint[]) {
+  if (!data) {
+    return "";
+  }
   const sortedData = data.sort((a, b) => a.date - b.date);
   const startDate = new Date(sortedData[0].date * 1000);
   const endDate = new Date(sortedData[sortedData.length - 1].date * 1000);
@@ -124,23 +127,27 @@ export function timestampToDateString(timestamp: number) {
 // 5. Calculate the percentage change for each time period
 // 6. Return the array of percentage change
 export function getPercentChange(data: TVLHistoryDataPoint[], filter: string) {
-  const sortedData = data.sort((a, b) => a.date - b.date);
-  const latestDataPoint = sortedData[sortedData.length - 1].tvl;
-  const dataPoint24HoursAgo = sortedData[sortedData.length - 2].tvl;
-  const dataPoint7DaysAgo = sortedData[sortedData.length - 8].tvl;
-  const dataPoint30DaysAgo = sortedData[sortedData.length - 31].tvl;
-  const percentChange24Hours =
-    (latestDataPoint / dataPoint24HoursAgo - 1) * 100;
-  const percentChange7Days = (latestDataPoint / dataPoint7DaysAgo - 1) * 100;
-  const percentChange30Days = (latestDataPoint / dataPoint30DaysAgo - 1) * 100;
-  if (filter === "24h") {
-    return percentChange24Hours;
-  } else if (filter === "7d") {
-    return percentChange7Days;
-  } else if (filter === "30d") {
-    return percentChange30Days;
-  } else {
-    return 0;
+  if (data.length == 0) return 0;
+  else {
+    const sortedData = data.sort((a, b) => a.date - b.date);
+    const latestDataPoint = sortedData[sortedData.length - 1].tvl;
+    const dataPoint24HoursAgo = sortedData[sortedData.length - 2].tvl;
+    const dataPoint7DaysAgo = sortedData[sortedData.length - 8].tvl;
+    const dataPoint30DaysAgo = sortedData[sortedData.length - 31].tvl;
+    const percentChange24Hours =
+      (latestDataPoint / dataPoint24HoursAgo - 1) * 100;
+    const percentChange7Days = (latestDataPoint / dataPoint7DaysAgo - 1) * 100;
+    const percentChange30Days =
+      (latestDataPoint / dataPoint30DaysAgo - 1) * 100;
+    if (filter === "24h") {
+      return percentChange24Hours;
+    } else if (filter === "7d") {
+      return percentChange7Days;
+    } else if (filter === "30d") {
+      return percentChange30Days;
+    } else {
+      return 0;
+    }
   }
 }
 

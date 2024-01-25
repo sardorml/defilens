@@ -1,4 +1,5 @@
 import { RadioGroup } from "@headlessui/react";
+import { useState } from "react";
 
 type OptionsType = {
   name: string;
@@ -7,17 +8,20 @@ type OptionsType = {
 
 export default function ChartFilterSelector({
   options,
-  selected,
   handleFilterChange,
 }: {
   options: OptionsType[];
-  selected: string;
   handleFilterChange: any;
 }) {
+  const [selected, setSelected] = useState(options[options.length - 1].value);
+  function handleChange(value: string) {
+    setSelected(value);
+    handleFilterChange(value);
+  }
   return (
     <RadioGroup
       value={selected}
-      onChange={handleFilterChange}
+      onChange={handleChange}
       className="flex bg-stone-200 rounded-lg p-1 cursor-pointer"
     >
       {options.map((option) => (

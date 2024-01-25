@@ -1,4 +1,4 @@
-import { Protocol } from "@/api/tvl";
+import { ProtocolTVL } from "@/api/tvl";
 import Image from "next/image";
 import { formatPercentChange } from "@/helpers";
 import {
@@ -7,6 +7,7 @@ import {
   ChevronRightIcon,
   BookmarkIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export const percentageChangeIcon = (change: number) => {
   if (change > 0) {
@@ -22,7 +23,7 @@ export default function ProtocolListItem({
   protocol,
   index,
 }: {
-  protocol: Protocol;
+  protocol: ProtocolTVL;
   index: number;
 }) {
   const percentageChangeClasses = (change: number) => {
@@ -93,7 +94,9 @@ export default function ProtocolListItem({
             </span>
           </div>
         </div>
-        <ChevronRightIcon className="w-6 h-6 text-slate-500 ml-5 cursor-pointer" />
+        <Link href={"/protocol/" + protocol.name}>
+          <ChevronRightIcon className="w-6 h-6 text-slate-500 ml-5 cursor-pointer" />
+        </Link>
       </div>
     </div>
   );
