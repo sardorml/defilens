@@ -22,7 +22,7 @@ import {
 import { TVLHistoryDataPoint } from "@/api/tvl";
 import { useEffect, useState } from "react";
 import FilterOptions from "@/components/home/ChartFilterSelector";
-import { useTVLContext } from "@/contexts/tvlContext";
+import { SkeletonCard } from "../skeleton/SkeletonList";
 
 const filterOptions = [
   {
@@ -65,18 +65,18 @@ const CustomTooltip = ({
   return null;
 };
 
+interface ChartAreaProps {
+  data: TVLHistoryDataPoint[];
+  isLoading: boolean;
+  handleFilterChange: (value: string) => void;
+}
+
 export default function ChartArea({
   data: historicalTVL,
+  isLoading,
   handleFilterChange,
-}: {
-  data: TVLHistoryDataPoint[];
-  handleFilterChange: (value: string) => void;
-}) {
-  const [dateRange, setDateRange] = useState("");
-
-  useEffect(() => {
-    // setDateRange(getTVLHistoryDataPointsDateRange(historicalTVL));
-  }, []);
+}: ChartAreaProps) {
+  const dateRange = getTVLHistoryDataPointsDateRange(historicalTVL);
 
   return (
     <div className="w-full h-full">
@@ -89,40 +89,47 @@ export default function ChartArea({
           handleFilterChange={handleFilterChange}
         />
       </div>
-      <div style={{ width: "100%", height: 300 }}>
-        <ResponsiveContainer>
-          <AreaChart data={historicalTVL}>
-            <CartesianGrid
-              vertical={false}
-              strokeDasharray="0"
-              stroke="#e2e8f0"
-            />
-            <XAxis
-              axisLine={false}
-              dataKey="date"
-              tickFormatter={(date) => timestampToDateString(date)}
-              tick={false}
-            />
-            <YAxis
-              axisLine={false}
-              tickLine={false}
-              dataKey="value"
-              tickFormatter={(tvl) => numberToWord(tvl)}
-            />
-            <Tooltip
-              cursor={{ stroke: "red", strokeWidth: 2 }}
-              content={<CustomTooltip />}
-            />
-            <Area
-              isAnimationActive={false}
-              type="monotone"
-              dataKey="value"
-              stroke="#10b981"
-              fill="#34d399"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+      {isLoading && (
+        <div style={{ width: "100%", height: 300 }}>
+          <SkeletonCard h="260" w="100%" />
+        </div>
+      )}
+      {!isLoading && (
+        <div style={{ width: "100%", height: 300 }}>
+          <ResponsiveContainer>
+            <AreaChart data={historicalTVL}>
+              <CartesianGrid
+                vertical={false}
+                strokeDasharray="0"
+                stroke="#e2e8f0"
+              />
+              <XAxis
+                axisLine={false}
+                dataKey="date"
+                tickFormatter={(date) => timestampToDateString(date)}
+                tick={false}
+              />
+              <YAxis
+                axisLine={false}
+                tickLine={false}
+                dataKey="value"
+                tickFormatter={(tvl) => numberToWord(tvl)}
+              />
+              <Tooltip
+                cursor={{ stroke: "red", strokeWidth: 2 }}
+                content={<CustomTooltip />}
+              />
+              <Area
+                isAnimationActive={false}
+                type="monotone"
+                dataKey="value"
+                stroke="#10b981"
+                fill="#34d399"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      )}
     </div>
   );
 }

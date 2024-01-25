@@ -1,5 +1,6 @@
 import { ProtocolTVL } from "@/api/tvl";
 import { numberToWord } from "@/helpers";
+import { SkeletonCard } from "../skeleton/SkeletonList";
 
 function Protocol({ protocol }: { protocol: ProtocolTVL }) {
   return (
@@ -20,19 +21,34 @@ function Protocol({ protocol }: { protocol: ProtocolTVL }) {
   );
 }
 
+interface TopProtocolsCardProps {
+  protocols: ProtocolTVL[];
+  isLoading: boolean;
+}
+
 export default function TopProtocolsCard({
   protocols,
-}: {
-  protocols: ProtocolTVL[];
-}) {
+  isLoading,
+}: TopProtocolsCardProps) {
   return (
-    <div className="hidden lg:block h-[95%] w-80 rounded-lg mr-5 shadow-sm px-3 py-5 border border-slate-100">
+    <div className="hidden lg:block h-[95%] w-80 shrink-0 mr-5 rounded-lg shadow-sm px-3 py-5 border border-slate-100">
       <p className="text-lg font-bold text-slate-900 mb-5">Top Protocols</p>
-      <div>
-        {protocols.slice(0, 5).map((protocol) => (
-          <Protocol protocol={protocol} key={protocol.id} />
-        ))}
-      </div>
+      {isLoading && (
+        <div>
+          {[0, 1, 2, 3, 4].map((i) => (
+            <div className="mb-2" key={i}>
+              <SkeletonCard h="44" w="100%" rounded />
+            </div>
+          ))}{" "}
+        </div>
+      )}
+      {!isLoading && (
+        <div>
+          {protocols.slice(0, 5).map((protocol) => (
+            <Protocol protocol={protocol} key={protocol.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

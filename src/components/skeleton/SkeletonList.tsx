@@ -1,23 +1,22 @@
+import { parse } from "path";
+
 export function SkeletonList() {
   return (
     <div className="animate-pulse">
-      <div className="h-[52px] bg-gray-100 rounded-lg dark:bg-gray-300 mb-4"></div>
+      <div className="h-[52px] bg-slate-100 rounded-lg mb-4"></div>
     </div>
   );
 }
-
-export function SkeletonCard({
-  width,
-  height,
-  rounded = false,
-}: {
-  width: number;
-  height: number;
+interface SkeletonCarProps {
+  w: string;
+  h: string;
   rounded?: boolean;
-}) {
-  const className = `animate-pulse bg-gray-100 dark:bg-gray-300 ${
-    rounded ? "rounded-lg" : ""
-  }`;
+}
+
+export function SkeletonCard({ w, h, rounded = false }: SkeletonCarProps) {
+  const className = `animate-pulse bg-slate-100 ${rounded ? "rounded-lg" : ""}`;
+  const width = w.includes("%") ? w : parseInt(w);
+  const height = h.includes("%") ? h : parseInt(h);
   return (
     <div className={className} style={{ width: width, height: height }}></div>
   );

@@ -82,7 +82,7 @@ export function filterTVLHistoryDataPointsByDays(
 
 // Write a function that takes in an array of TVLHistoryDataPoint array and returns starting date and end date in the format of DD, MMM YYYY
 export function getTVLHistoryDataPointsDateRange(data: TVLHistoryDataPoint[]) {
-  if (!data) {
+  if (!data || data.length === 0) {
     return "";
   }
   const sortedData = data.sort((a, b) => a.date - b.date);

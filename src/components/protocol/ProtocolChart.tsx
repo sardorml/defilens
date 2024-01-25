@@ -4,6 +4,7 @@ import { ProtocolInfo, TVLHistoryDataPoint } from "@/api/tvl";
 import ChartArea from "../home/ChartArea";
 import { use, useMemo, useState } from "react";
 import SkeletonProtocolHeader from "../skeleton/protocol/SkeletonProtocolHeader";
+import { SkeletonCard } from "../skeleton/SkeletonList";
 
 interface ProtocolChartProps {
   protocol: ProtocolInfo;
@@ -32,7 +33,7 @@ export default function ProtocolChart({
   return (
     <div className="">
       {isLoading && <SkeletonProtocolHeader />}
-      {!isLoading && protocol ? (
+      {!isLoading && (
         <div className="flex justify-between my-5">
           <div className="flex items-center">
             <Image
@@ -62,23 +63,24 @@ export default function ProtocolChart({
                 )}
           </span>
         </div>
-      ) : null}
-      {!isLoading && protocol ? (
-        <div className="flex">
-          <div className="w-2/5 hidden lg:block border border-slate-100 shadow-sm rounded-lg p-7 mr-5">
-            <div className="flex flex-col">
-              <span className="text-lg text-slate-500 my-3">Description </span>
-              <span className="text-slate-700">{protocol.description}</span>
-            </div>
-          </div>
-          <ChartArea
-            data={filteredTVL}
-            handleFilterChange={handleFilterChange}
-          />
-        </div>
-      ) : (
-        <div className="text-center mt-16">Protocol not found</div>
       )}
+
+      <div className="flex">
+        <div className="w-2/5 hidden lg:block border border-slate-100 shadow-sm rounded-lg p-7 mr-5">
+          <div className="flex flex-col">
+            <span className="text-lg text-slate-500 my-3">Description </span>
+            {isLoading && <SkeletonCard h="100" w="100%" />}
+            {!isLoading && (
+              <span className="text-slate-700">{protocol.description}</span>
+            )}
+          </div>
+        </div>
+        <ChartArea
+          data={filteredTVL}
+          isLoading={isLoading}
+          handleFilterChange={handleFilterChange}
+        />
+      </div>
     </div>
   );
 }
