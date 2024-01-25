@@ -31,7 +31,7 @@ export default function TopProtocolsCard({
   isLoading,
 }: TopProtocolsCardProps) {
   return (
-    <div className="hidden lg:block h-[95%] w-80 shrink-0 mr-5 rounded-lg shadow-sm px-3 py-5 border border-slate-100">
+    <div className="hidden lg:block h-[95%] w-80 shrink-0 mr-5  px-3 pb-5 border-r border-slate-100">
       <p className="text-lg font-bold text-slate-900 mb-5">Top Protocols</p>
       {isLoading && (
         <div>

@@ -20,7 +20,6 @@ import {
   getTVLHistoryDataPointsDateRange,
 } from "@/helpers";
 import { TVLHistoryDataPoint } from "@/api/tvl";
-import { useEffect, useState } from "react";
 import FilterOptions from "@/components/home/ChartFilterSelector";
 import { SkeletonCard } from "../skeleton/SkeletonList";
 

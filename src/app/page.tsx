@@ -8,7 +8,6 @@ import {
 } from "@/api/tvl";
 import ChartTVL from "@/components/home/ChartTVL";
 import Protocols from "@/components/home/Protocols";
-import { SkeletonCard } from "@/components/skeleton/SkeletonList";
 import { useEffect, useState } from "react";
 
 export default function Home() {

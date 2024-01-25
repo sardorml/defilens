@@ -66,7 +66,7 @@ export default function ProtocolChart({
       )}
 
       <div className="flex">
-        <div className="w-2/5 hidden lg:block border border-slate-100 shadow-sm rounded-lg p-7 mr-5">
+        <div className="w-80 shrink-0 hidden lg:block border-r border-slate-100 p-7 mr-5">
           <div className="flex flex-col">
             <span className="text-lg text-slate-500 my-3">Description </span>
             {isLoading && <SkeletonCard h="100" w="100%" />}
