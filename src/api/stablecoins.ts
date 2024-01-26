@@ -15,7 +15,22 @@ export type Stablecoin = {
   circulatingPrevMonth: {
     peggedUSD: number;
   };
-  chainCirculating: Object;
+  chainCirculating: {
+    [key: string]: {
+      current: {
+        peggedUSD: number;
+      };
+      circulatingPrevDay: {
+        peggedUSD: number;
+      };
+      circulatingPrevWeek: {
+        peggedUSD: number;
+      };
+      circulatingPrevMonth: {
+        peggedUSD: number;
+      };
+    };
+  };
 };
 
 export async function getStablecoins() {
