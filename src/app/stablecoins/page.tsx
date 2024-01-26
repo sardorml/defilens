@@ -93,16 +93,20 @@ export default function Stablecoins() {
           <div className="w-2/4 shrink-0 flex flex-col justify-center">
             <CardData
               title={`${selectedStablecoin.name} (${selectedStablecoin.symbol})`}
-              value={selectedStablecoin.price.toFixed(3)}
+              value={
+                selectedStablecoin.price
+                  ? selectedStablecoin.price.toFixed(3)
+                  : "N/A"
+              }
             />
             <CardData
               title="Circulating Supply"
-              value={numberToWord(selectedStablecoin?.circulating.peggedUSD)}
+              value={numberToWord(selectedStablecoin.circulating.peggedUSD)}
             />
             <CardData
               title="Circulating supply last week"
               value={numberToWord(
-                selectedStablecoin?.circulatingPrevWeek.peggedUSD
+                selectedStablecoin.circulatingPrevWeek.peggedUSD
               )}
             />
           </div>
