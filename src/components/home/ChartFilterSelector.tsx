@@ -22,7 +22,7 @@ export default function ChartFilterSelector({
     <RadioGroup
       value={selected}
       onChange={handleChange}
-      className="flex bg-stone-200 rounded-lg p-1 cursor-pointer"
+      className="flex bg-stone-200 rounded-lg p-1 cursor-pointer w-fit"
     >
       {options.map((option) => (
         <RadioGroup.Option

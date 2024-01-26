@@ -25,7 +25,7 @@ function TableHeader() {
       <div className="hidden lg:block col-span-2">
         <span className="flex items-center h-full font-medium">1 Day</span>
       </div>
-      <div className="col-span-5 lg:col-span-3 flex justify-end text-end mr-4">
+      <div className="col-span-5 lg:col-span-3 flex justify-end text-end">
         <div className="flex flex-col">
           <span className="text-lg text-slate-600 font-medium">
             Value locked
@@ -34,7 +34,7 @@ function TableHeader() {
             7 Day change
           </span>
         </div>
-        <div className="w-6 ml-5"></div>
+        <div className="w-6 ml-3 lg:mx-5"></div>
       </div>
     </div>
   );

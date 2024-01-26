@@ -79,8 +79,8 @@ export default function ChartArea({
 
   return (
     <div className="w-full h-full">
-      <div className="flex justify-between mb-5">
-        <div>
+      <div className="flex flex-col flex-col-reverse items-center lg:justify-between mb-5 lg:flex-row">
+        <div className="mt-3 lg:mb-0">
           <span className="font-bold">{dateRange}</span>
         </div>
         <FilterOptions

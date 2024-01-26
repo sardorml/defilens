@@ -78,7 +78,7 @@ export default function ProtocolListItem({
           {formatPercentChange(protocol.change_1d)}%
         </span>
       </div>
-      <div className="col-span-5 lg:col-span-3 flex items-center justify-end mr-4">
+      <div className="col-span-5 lg:col-span-3 flex items-center justify-end">
         <div className="flex flex-col text-end">
           <span className="lg:hidden text-lg text-slate-600">
             ${numberToWord(protocol.tvl)}
@@ -98,7 +98,7 @@ export default function ProtocolListItem({
           </div>
         </div>
         <Link href={"/protocol/" + protocol.name}>
-          <ChevronRightIcon className="w-6 h-6 text-slate-500 ml-5 cursor-pointer" />
+          <ChevronRightIcon className="w-6 h-6 text-slate-500 ml-3 lg:mx-5 cursor-pointer" />
         </Link>
       </div>
     </div>

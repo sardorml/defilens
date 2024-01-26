@@ -21,3 +21,12 @@ export function SkeletonCard({ w, h, rounded = false }: SkeletonCarProps) {
     <div className={className} style={{ width: width, height: height }}></div>
   );
 }
+
+export function SkeletonRound({ w, h }: SkeletonCarProps) {
+  const className = `animate-pulse bg-slate-100 rounded-full`;
+  const width = w.includes("%") ? w : parseInt(w);
+  const height = h.includes("%") ? h : parseInt(h);
+  return (
+    <div className={className} style={{ width: width, height: height }}></div>
+  );
+}

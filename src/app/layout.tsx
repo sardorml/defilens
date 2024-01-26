@@ -30,7 +30,7 @@ export default function RootLayout({
               </div>
             </div>
           </div>
-          <div className="mt-10 w-full">{children}</div>
+          <div className="mt-10 w-full px-5 lg:px-0">{children}</div>
         </div>
       </body>
     </html>

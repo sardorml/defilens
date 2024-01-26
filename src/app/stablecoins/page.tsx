@@ -1,6 +1,10 @@
 "use client";
 
 import { getStablecoins, Stablecoin } from "@/api/stablecoins";
+import { SkeletonCard } from "@/components/skeleton/SkeletonList";
+import SkeletonCardData from "@/components/skeleton/stablecoins/SkeletonCardData";
+import SkeletonPieChart from "@/components/skeleton/stablecoins/SkeletonPieChart";
+import ChainList from "@/components/stablecoins/ChainList";
 import ChartPie, { ChartPieDataPoint } from "@/components/stablecoins/ChartPie";
 import SelectAutocomplete, {
   DataPoint,
@@ -10,9 +14,9 @@ import { useEffect, useState } from "react";
 
 function CardData({ title, value }: { title: string; value: string }) {
   return (
-    <div className="flex flex-col border rounded-lg p-4 mb-2">
-      <span className="text-base text-slate-600 font-medium">{title}</span>
-      <span className="text-lg text-teal-700 font-medium mt-2">{value}</span>
+    <div className="flex flex-col shadow-sm rounded-lg p-4 mb-2">
+      <span className="text-base text-slate-500 font-medium">{title}</span>
+      <span className="text-lg text-slate-900 font-medium mt-2">{value}</span>
     </div>
   );
 }
@@ -73,10 +77,11 @@ export default function Stablecoins() {
 
   return (
     <div>
-      <div className="flex items-center">
-        <h1 className="text-3xl text-late-600 font-medium mr-2">
+      <div className="flex flex-col lg:flex-row lg:items-center">
+        <h1 className="text-2xl text-late-600 font-bold mr-2 mb-3 lg:mb-0">
           Select stablecoin
         </h1>
+        {isLoading && <SkeletonCard h="44" w="200" />}
         {!isLoading && (
           <SelectAutocomplete
             data={autocompleteData}
@@ -88,9 +93,16 @@ export default function Stablecoins() {
           />
         )}
       </div>
-      <div className="flex">
-        {!isLoading && (
+      <div className="flex flex-col lg:flex-row flex-col-reverse">
+        {isLoading && (
           <div className="w-2/4 shrink-0 flex flex-col justify-center">
+            <SkeletonCardData />
+            <SkeletonCardData />
+            <SkeletonCardData />
+          </div>
+        )}
+        {!isLoading && (
+          <div className="w-full lg:w-2/4 shrink-0 flex flex-col justify-center">
             <CardData
               title={`${selectedStablecoin.name} (${selectedStablecoin.symbol})`}
               value={
@@ -111,8 +123,11 @@ export default function Stablecoins() {
             />
           </div>
         )}
-        <ChartPie data={topFiveWithOther} />
+        {isLoading && <SkeletonPieChart />}
+        {!isLoading && <ChartPie data={topFiveWithOther} />}
       </div>
+      {isLoading && <div className="">Loading...</div>}
+      {!isLoading && <ChainList data={selectedStablecoin.chainCirculating} />}
     </div>
   );
 }
