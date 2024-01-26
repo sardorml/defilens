@@ -1,6 +1,6 @@
 import { ProtocolTVL } from "@/api/tvl";
 import Image from "next/image";
-import { formatPercentChange } from "@/helpers";
+import { formatPercentChange, numberToWord } from "@/helpers";
 import {
   ChevronDownIcon,
   ChevronUpIcon,
@@ -80,7 +80,10 @@ export default function ProtocolListItem({
       </div>
       <div className="col-span-5 lg:col-span-3 flex items-center justify-end mr-4">
         <div className="flex flex-col text-end">
-          <span className="text-lg text-slate-600">
+          <span className="lg:hidden text-lg text-slate-600">
+            ${numberToWord(protocol.tvl)}
+          </span>
+          <span className="hidden lg:block text-lg text-slate-600">
             ${parseInt(protocol.tvl.toFixed(0)).toLocaleString()}
           </span>
           <div className="flex justify-end items-center">

@@ -1,10 +1,15 @@
 import { ProtocolTVL } from "@/api/tvl";
 import { numberToWord } from "@/helpers";
 import { SkeletonCard } from "../skeleton/SkeletonList";
+import Link from "next/link";
 
 function Protocol({ protocol }: { protocol: ProtocolTVL }) {
+  const protocolName = protocol.name.split("%")[0];
   return (
-    <div className="flex justify-between items-center mb-2 cursor-pointer hover:bg-slate-100 rounded-lg px-2">
+    <Link
+      href={"protocol/" + protocolName}
+      className="flex justify-between items-center mb-2 cursor-pointer hover:bg-slate-100 rounded-lg px-2"
+    >
       <div className="flex items-center">
         <div className="w-8 h-8 mr-3">
           <img src={protocol.logo} alt={protocol.name} className="rounded-lg" />
@@ -17,7 +22,7 @@ function Protocol({ protocol }: { protocol: ProtocolTVL }) {
       <span className="text-md text-slate-600">
         ${numberToWord(protocol.tvl)}
       </span>
-    </div>
+    </Link>
   );
 }
 
