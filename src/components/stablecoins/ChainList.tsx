@@ -1,5 +1,7 @@
 import { Stablecoin } from "@/api/stablecoins";
 import { numberToWord } from "@/helpers";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 interface ChainListItemProps {
   name: string;
@@ -8,13 +10,31 @@ interface ChainListItemProps {
 }
 
 function ChainListItem({ name, index, value }: ChainListItemProps) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const imagePath = `/icons/chains/rsz_${name
+    .replace(" ", "-")
+    .toLowerCase()}.jpg`;
+
   return (
     <div
       className="grid grid-cols-2 lg:grid-cols-5 text-lg text-slate-700 p-3 text-end hover:bg-slate-50 rounded-lg"
       key={name}
     >
-      <span className="text-start">
+      <span className="text-start flex items-center">
         <span className="mr-10">{index + 1}</span>
+        <span>
+          <Image
+            src={imageFailed ? "/icons/0vix.png" : imagePath}
+            alt={name}
+            width={24}
+            height={24}
+            className="rounded-full mr-2"
+            onError={(e) => {
+              console.log(e);
+              setImageFailed(true);
+            }}
+          />
+        </span>
         <span>{name}</span>
       </span>
       <span>${numberToWord(value.current.peggedUSD)}</span>

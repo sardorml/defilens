@@ -21,6 +21,38 @@ function CardData({ title, value }: { title: string; value: string }) {
   );
 }
 
+function prepareChartPieData(data: Stablecoin) {
+  if (!data) return [];
+  const result: ChartPieDataPoint[] = [];
+  for (const [key, value] of Object.entries(data.chainCirculating)) {
+    result.push({ name: key, value: value.current.peggedUSD });
+  }
+  return result;
+}
+function sortChartData(data: ChartPieDataPoint[]) {
+  if (!data) return [];
+  return data.sort((a: ChartPieDataPoint, b: ChartPieDataPoint) => {
+    if (a.value > b.value) return -1;
+    else if (a.value < b.value) return 1;
+    else return 0;
+  });
+}
+function prepareAutoCompleteData(data: Stablecoin[]) {
+  const result: DataPoint[] = [];
+  data.forEach((item) => {
+    result.push({ id: item.id, name: item.name });
+  });
+  return result;
+}
+function getTopFive(data: ChartPieDataPoint[]) {
+  if (!data) return [];
+  const topFive = data.slice(0, 5);
+  const other = data.slice(5);
+  const otherTotal = other.reduce((acc, curr) => acc + curr.value, 0);
+  const topFiveWithOther = [...topFive, { name: "Other", value: otherTotal }];
+  return topFiveWithOther;
+}
+
 export default function Stablecoins() {
   const [stablecoins, setStablecoins] = useState<Stablecoin[]>([]);
   const [selectedStablecoin, setSelectedStablecoin] =
@@ -31,40 +63,9 @@ export default function Stablecoins() {
       setStablecoins(data);
       setSelectedStablecoin(data[0]);
       setIsLoading(false);
+      console.log(data);
     });
   }, []);
-
-  function prepareChartPieData(data: Stablecoin) {
-    if (!data) return [];
-    const result: ChartPieDataPoint[] = [];
-    for (const [key, value] of Object.entries(data.chainCirculating)) {
-      result.push({ name: key, value: value.current.peggedUSD });
-    }
-    return result;
-  }
-  function sortChartData(data: ChartPieDataPoint[]) {
-    if (!data) return [];
-    return data.sort((a: ChartPieDataPoint, b: ChartPieDataPoint) => {
-      if (a.value > b.value) return -1;
-      else if (a.value < b.value) return 1;
-      else return 0;
-    });
-  }
-  function prepareAutoCompleteData(data: Stablecoin[]) {
-    const result: DataPoint[] = [];
-    data.forEach((item) => {
-      result.push({ id: item.id, name: item.name });
-    });
-    return result;
-  }
-  function getTopFive(data: ChartPieDataPoint[]) {
-    if (!data) return [];
-    const topFive = data.slice(0, 5);
-    const other = data.slice(5);
-    const otherTotal = other.reduce((acc, curr) => acc + curr.value, 0);
-    const topFiveWithOther = [...topFive, { name: "Other", value: otherTotal }];
-    return topFiveWithOther;
-  }
   function handleSelectChange(value: DataPoint) {
     console.log(value);
     setSelectedStablecoin(stablecoins.find((item) => item.id === value.id));
@@ -74,12 +75,12 @@ export default function Stablecoins() {
   const pieChartData = prepareChartPieData(selectedStablecoin);
   const filteredChartData = sortChartData(pieChartData);
   const topFiveWithOther = getTopFive(filteredChartData);
-
   return (
     <div>
+      <h1 className="text-3xl font-bold text-slate-900 mb-5">Stablecoins</h1>
       <div className="flex flex-col lg:flex-row lg:items-center">
-        <h1 className="text-2xl text-late-600 font-bold mr-2 mb-3 lg:mb-0">
-          Select stablecoin
+        <h1 className="text-xl font-bold text-slate-800 mr-2 mb-3 lg:mb-0">
+          Select coin
         </h1>
         {isLoading && <SkeletonCard h="44" w="200" />}
         {!isLoading && (
