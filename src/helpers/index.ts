@@ -1,4 +1,5 @@
 import { TVLHistoryDataPoint } from "@/api/tvl";
+import { ProjectYield } from "@/api/yield";
 export function numberToWord(number: number | undefined) {
   if (number === null || number === undefined) {
     return "0";
@@ -149,6 +150,23 @@ export function getPercentChange(data: TVLHistoryDataPoint[], filter: string) {
       return 0;
     }
   }
+}
+
+// Write a function that takes takes array of objects ProjectYield and creates a new array of objects with chain as name key and an array of projects as value
+// 1. Create an empty object
+// 2. Loop through the array of objects
+// 3. If the chain key does not exist in the object, add the chain key and an empty array as value
+// 4. Push the project object into the array of projects
+// 5. Return the object
+export function groupProjectsByChain(projects: ProjectYield[]) {
+  const groupedProjects: { [key: string]: ProjectYield[] } = {};
+  projects.forEach((project) => {
+    if (!groupedProjects[project.chain]) {
+      groupedProjects[project.chain] = [];
+    }
+    groupedProjects[project.chain].push(project);
+  });
+  return groupedProjects;
 }
 
 export default {
