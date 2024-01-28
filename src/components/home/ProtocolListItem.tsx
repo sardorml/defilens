@@ -18,6 +18,15 @@ export const percentageChangeIcon = (change: number) => {
     return <></>;
   }
 };
+export const percentageChangeClasses = (change: number) => {
+  if (change > 0) {
+    return " text-teal-500";
+  } else if (change < 0) {
+    return " text-rose-500";
+  } else {
+    return " text-slate-500";
+  }
+};
 
 export default function ProtocolListItem({
   protocol,
@@ -26,16 +35,6 @@ export default function ProtocolListItem({
   protocol: ProtocolTVL;
   index: number;
 }) {
-  const percentageChangeClasses = (change: number) => {
-    if (change > 0) {
-      return " text-teal-500";
-    } else if (change < 0) {
-      return " text-rose-500";
-    } else {
-      return " text-slate-500";
-    }
-  };
-
   return (
     <div className="grid grid-cols-12 hover:bg-slate-100 rounded-lg">
       <div className="col-span-1 flex items-center justify-center relative">

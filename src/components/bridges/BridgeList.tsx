@@ -1,6 +1,5 @@
-import { ProjectYield } from "@/api/yield";
 import { numberToWord } from "@/helpers";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useState } from "react";
 import { SkeletonList } from "../skeleton/SkeletonList";
 import { Bridge } from "@/api/bridges";

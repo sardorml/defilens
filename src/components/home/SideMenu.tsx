@@ -21,11 +21,11 @@ export default function SideMenu() {
       link: "/",
       icon: HomeIcon,
     },
-    // {
-    //   name: "TVL",
-    //   link: "/tvl",
-    //   icon: ChartBarIcon,
-    // },
+    {
+      name: "Fees",
+      link: "/fees",
+      icon: ChartBarSquareIcon,
+    },
     {
       name: "Stablecoins",
       link: "/stablecoins",
@@ -40,11 +40,6 @@ export default function SideMenu() {
       name: "Bridges",
       link: "/bridges",
       icon: ArrowsRightLeftIcon,
-    },
-    {
-      name: "Fees",
-      link: "/fees",
-      icon: ChartBarSquareIcon,
     },
   ];
   function isActive(link: string) {
