@@ -57,7 +57,7 @@ export default function ProtocolListItem({
           <span className="text-md text-slate-400">{protocol.category}</span>
         </div>
       </div>
-      <div className="hidden lg:block col-span-2">
+      <div className="hidden lg:block col-span-2 text-lg text-slate-600">
         <span
           className={
             "flex items-center h-full" +
@@ -67,7 +67,7 @@ export default function ProtocolListItem({
           {formatPercentChange(protocol.change_1h)}%
         </span>
       </div>
-      <div className="hidden lg:block col-span-2">
+      <div className="hidden lg:block col-span-2 text-lg text-slate-600">
         <span
           className={
             "flex items-center h-full" +

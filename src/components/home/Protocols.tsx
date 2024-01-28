@@ -20,10 +20,14 @@ function TableHeader() {
         </div>
       </div>
       <div className="hidden lg:block col-span-2">
-        <span className="flex items-center h-full font-medium">1 Hour</span>
+        <span className="flex items-center h-full font-medium text-lg text-slate-600">
+          1 Hour
+        </span>
       </div>
       <div className="hidden lg:block col-span-2">
-        <span className="flex items-center h-full font-medium">1 Day</span>
+        <span className="flex items-center h-full font-medium text-lg text-slate-600">
+          1 Day
+        </span>
       </div>
       <div className="col-span-5 lg:col-span-3 flex justify-end text-end">
         <div className="flex flex-col">

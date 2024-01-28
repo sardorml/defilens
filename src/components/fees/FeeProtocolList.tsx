@@ -42,12 +42,12 @@ function FeeProtocolListItem({
       </div>
       <div className="hidden lg:block col-span-2">
         <span className={"flex items-center h-full text-lg text-slate-600"}>
-          {numberToWord(protocol.total7d)}
+          {numberToWord(protocol.dailyRevenue)}
         </span>
       </div>
       <div className="hidden lg:block col-span-2">
         <span className={"flex items-center h-full text-lg text-slate-600"}>
-          {numberToWord(protocol.total30d)}
+          {numberToWord(protocol.total48hto24h)}
         </span>
       </div>
       <div className="col-span-6 lg:col-span-3 flex items-center justify-end">
@@ -91,10 +91,14 @@ export default function FeeProtocolList({
           </div>
         </div>
         <div className="hidden lg:block col-span-2">
-          <span className="flex items-center h-full font-medium">7D</span>
+          <span className="flex items-center h-full font-medium text-lg text-slate-600">
+            Daily revenue
+          </span>
         </div>
         <div className="hidden lg:block col-span-2">
-          <span className="flex items-center h-full font-medium">30D</span>
+          <span className="flex items-center h-full font-medium text-lg text-slate-600">
+            Prev Day
+          </span>
         </div>
         <div className="col-span-6 lg:col-span-3 flex justify-end text-end items-center">
           <div className="flex flex-col">
