@@ -56,10 +56,10 @@ function BridgeListItem({ bridge, index }: { bridge: Bridge; index: number }) {
         })}
       </span>
       <span className="hidden lg:block">
-        {numberToWord(bridge.currentDayVolume)}
+        ${numberToWord(bridge.currentDayVolume)}
       </span>
       <span className="hidden lg:block">
-        {numberToWord(bridge.weeklyVolume)}
+        ${numberToWord(bridge.weeklyVolume)}
       </span>
       <span className="hidden lg:block">
         ${numberToWord(bridge.monthlyVolume)}

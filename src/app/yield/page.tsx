@@ -38,13 +38,10 @@ export default function Yield() {
   }, []);
 
   function handleSelectChange(value: DataPoint) {
-    console.log(value);
     setSelectedChainProjects(pools[value.id]);
     setSelectedChain(value);
-    console.log("selectedChainProjects", selectedChainProjects);
   }
   const autoCompleteData = prepareAutoCompleteData(pools);
-  console.log("pools", pools);
 
   return (
     <div>

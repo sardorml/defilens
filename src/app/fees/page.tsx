@@ -44,7 +44,7 @@ function FeesInfoCard({ fees, isLoading }: any) {
             {item.title}
           </span>
           <div className="flex items-center text-medium text-slate-700">
-            <span className="text-xl">{numberToWord(item.value)}</span>
+            <span className="text-xl">${numberToWord(item.value)}</span>
             <span className="flex items-center text-base">
               {percentageChangeIcon(item.change)}
               {item.change && (
@@ -78,7 +78,6 @@ export default function Bridges() {
   );
   useEffect(() => {
     getFees().then((fees) => {
-      console.log(fees);
       setFees(fees);
       setIsLoading(false);
     });

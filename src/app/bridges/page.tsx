@@ -10,7 +10,6 @@ export default function Bridges() {
 
   useEffect(() => {
     getBridges().then((bridges) => {
-      console.log(bridges);
       setBridges(bridges);
       setIsLoading(false);
     });

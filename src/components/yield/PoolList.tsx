@@ -44,8 +44,8 @@ function PoolListItem({ pool, index }: { pool: ProjectYield; index: number }) {
         <span>{pool.project}</span>
       </span>
       <span className="hidden lg:block">{pool.symbol}</span>
-      <span className="hidden lg:block">{pool.apyBase}</span>
-      <span className="hidden lg:block">{pool.apyMean30d}</span>
+      <span className="hidden lg:block">{pool.apyBase}%</span>
+      <span className="hidden lg:block">{pool.apyMean30d}%</span>
       <span>${numberToWord(pool.tvlUsd)}</span>
     </div>
   );
@@ -72,9 +72,10 @@ export default function PoolList({
       </div>
       {isLoading &&
         [1, 2, 3, 4, 5].map((item, index) => <SkeletonList key={index} />)}
-      {data.map((item, index) => (
-        <PoolListItem key={index} pool={item} index={index} />
-      ))}
+      {!isLoading &&
+        data.map((item, index) => (
+          <PoolListItem key={index} pool={item} index={index} />
+        ))}
     </div>
   );
 }

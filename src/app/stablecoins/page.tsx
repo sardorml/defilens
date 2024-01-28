@@ -63,11 +63,9 @@ export default function Stablecoins() {
       setStablecoins(data);
       setSelectedStablecoin(data[0]);
       setIsLoading(false);
-      console.log(data);
     });
   }, []);
   function handleSelectChange(value: DataPoint) {
-    console.log(value);
     setSelectedStablecoin(stablecoins.find((item) => item.id === value.id));
   }
 

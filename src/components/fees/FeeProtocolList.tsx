@@ -42,18 +42,18 @@ function FeeProtocolListItem({
       </div>
       <div className="hidden lg:block col-span-2">
         <span className={"flex items-center h-full text-lg text-slate-600"}>
-          {numberToWord(protocol.dailyRevenue)}
+          ${numberToWord(protocol.dailyRevenue)}
         </span>
       </div>
       <div className="hidden lg:block col-span-2">
         <span className={"flex items-center h-full text-lg text-slate-600"}>
-          {numberToWord(protocol.total48hto24h)}
+          ${numberToWord(protocol.total48hto24h)}
         </span>
       </div>
       <div className="col-span-6 lg:col-span-3 flex items-center justify-end">
         <div className="flex flex-col text-end">
           <span className="text-lg text-slate-600">
-            {numberToWord(protocol.total24h)}
+            ${numberToWord(protocol.total24h)}
           </span>
           <div className="flex justify-end items-center text-base">
             {percentageChangeIcon(protocol.change_1d)}{" "}
