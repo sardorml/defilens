@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import SideMenu from "@/components/home/SideMenu";
 
-const inter = Inter({ subsets: ["latin"] });
+const noto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Defilens - defi and beyond",
@@ -18,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased">
+      <body className={"" + noto.className}>
         <Navigation />
         <div className="mx-auto flex max-w-7xl ">
           <div className="w-56 hidden lg:block">
