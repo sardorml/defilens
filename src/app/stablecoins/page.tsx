@@ -15,8 +15,8 @@ import { useEffect, useState } from "react";
 function CardData({ title, value }: { title: string; value: string }) {
   return (
     <div className="flex flex-col shadow-sm rounded-lg p-4 mb-2">
-      <span className="text-base text-slate-500 font-medium">{title}</span>
-      <span className="text-lg text-slate-900 font-medium mt-2">{value}</span>
+      <span className="text-base text-slate-500">{title}</span>
+      <span className="text-2xl text-slate-700 font-medium mt-2">${value}</span>
     </div>
   );
 }

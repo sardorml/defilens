@@ -1,3 +1,4 @@
+import { numberToWord } from "@/helpers";
 import {
   Cell,
   Label,
@@ -29,7 +30,9 @@ const CustomTooltip = ({
   if (active) {
     return (
       <div className="custom-tooltip bg-white/90 p-3 rounded-lg shadow-sm">
-        <p className="label">{payload?.[0]?.value}</p>
+        <p className="label">
+          ${numberToWord(payload?.[0]?.value as number)} is circulation
+        </p>
       </div>
     );
   }

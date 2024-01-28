@@ -16,11 +16,11 @@ function FeeProtocolListItem({
 }) {
   const [isImageFailed, setIsImageFailed] = useState(false);
   return (
-    <div className="grid grid-cols-12 hover:bg-slate-100 rounded-lg">
-      <div className="col-span-6 lg:col-span-5 flex items-center">
-        <span className="text-lg text-slate-600 mx-5">{index}</span>
+    <div className="grid grid-cols-2 lg:grid-cols-12 hover:bg-slate-100 rounded-lg">
+      <div className="lg:col-span-5 flex items-center">
+        <div className="text-lg text-slate-600 w-12 text-center">{index}</div>
 
-        <div className="w-10 h-10 mr-3">
+        <div className="h-10 mr-3">
           <Image
             src={
               isImageFailed ? "/icons/ethereum-foundation.jpg" : protocol.logo
@@ -50,7 +50,7 @@ function FeeProtocolListItem({
           ${numberToWord(protocol.total48hto24h)}
         </span>
       </div>
-      <div className="col-span-6 lg:col-span-3 flex items-center justify-end">
+      <div className="lg:col-span-3 flex items-center justify-end">
         <div className="flex flex-col text-end">
           <span className="text-lg text-slate-600">
             ${numberToWord(protocol.total24h)}

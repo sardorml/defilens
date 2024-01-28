@@ -15,21 +15,21 @@ function PoolListItem({ pool, index }: { pool: ProjectYield; index: number }) {
     .toLowerCase()}.png`;
 
   function getImagePath() {
-    if (imageFailed) return "/icons/0vix.png";
+    if (imageFailed) return "/icons/ethereum-foundation.jpg";
     if (pngTried) return imagePathJpg;
     return imagePathPng;
   }
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-5 text-lg text-slate-700 p-3 text-end hover:bg-slate-50 rounded-lg">
-      <span className="text-start flex items-center">
-        <span className="mr-10">{index + 1}</span>
+    <div className="grid grid-cols-2 lg:grid-cols-12 text-lg text-slate-700 p-3 text-end hover:bg-slate-50 rounded-lg">
+      <span className="lg:col-span-4 text-start flex items-center">
+        <span className="w-10">{index + 1}</span>
         <span>
           <Image
             src={getImagePath() as unknown as StaticImageData}
             alt={pool.project}
-            width={24}
-            height={24}
-            className="rounded-full mr-2"
+            width={32}
+            height={32}
+            className="rounded-lg mr-2"
             onError={(e) => {
               console.log(e);
               if (!pngTried) {
@@ -41,12 +41,12 @@ function PoolListItem({ pool, index }: { pool: ProjectYield; index: number }) {
             }}
           />
         </span>
-        <span>{pool.project}</span>
+        <span className="truncate">{pool.project}</span>
       </span>
-      <span className="hidden lg:block">{pool.symbol}</span>
-      <span className="hidden lg:block">{pool.apyBase}%</span>
-      <span className="hidden lg:block">{pool.apyMean30d}%</span>
-      <span>${numberToWord(pool.tvlUsd)}</span>
+      <span className="col-span-2 hidden lg:block">{pool.symbol}</span>
+      <span className="col-span-2 hidden lg:block">{pool.apyBase}%</span>
+      <span className="col-span-2 hidden lg:block">{pool.apyMean30d}%</span>
+      <span className="lg:col-span-2">${numberToWord(pool.tvlUsd)}</span>
     </div>
   );
 }
@@ -60,15 +60,15 @@ export default function PoolList({
 }) {
   return (
     <div>
-      <div className="sticky top-16 bg-white z-[8] grid grid-cols-2 lg:grid-cols-5 text-lg text-slate-500 p-3 font-medium text-end border-b border-slate-200 mb-2">
-        <span className="text-start">
-          <span className="mr-10">#</span>
+      <div className="sticky top-16 bg-white z-[8] grid grid-cols-2 lg:grid-cols-12 text-lg text-slate-500 p-3 font-medium text-end border-b border-slate-200 mb-2">
+        <span className="lg:col-span-4 flex text-start">
+          <span className="w-10">#</span>
           <span>Chain</span>
         </span>
-        <span className="hidden lg:block">Symbol</span>
-        <span className="hidden lg:block">APY</span>
-        <span className="hidden lg:block">APY 30d</span>
-        <span>TVL</span>
+        <span className="col-span-2 hidden lg:block">Symbol</span>
+        <span className="col-span-2 hidden lg:block">APY</span>
+        <span className="col-span-2 hidden lg:block">APY 30d</span>
+        <span className="lg:col-span-2">TVL</span>
       </div>
       {isLoading &&
         [1, 2, 3, 4, 5].map((item, index) => <SkeletonList key={index} />)}

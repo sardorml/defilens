@@ -17,17 +17,17 @@ function ChainListItem({ name, index, value }: ChainListItemProps) {
 
   return (
     <div
-      className="grid grid-cols-2 lg:grid-cols-5 text-lg text-slate-700 p-3 text-end hover:bg-slate-50 rounded-lg"
+      className="grid grid-cols-2 lg:grid-cols-12 text-lg text-slate-700 p-3 text-end hover:bg-slate-50 rounded-lg"
       key={name}
     >
-      <span className="text-start flex items-center">
-        <span className="mr-10">{index + 1}</span>
+      <span className="lg:col-span-4 text-start flex items-center">
+        <span className="w-10">{index + 1}</span>
         <span>
           <Image
-            src={imageFailed ? "/icons/0vix.png" : imagePath}
+            src={imageFailed ? "/icons/ethereum-foundation.jpg" : imagePath}
             alt={name}
-            width={24}
-            height={24}
+            width={32}
+            height={32}
             className="rounded-full mr-2"
             onError={(e) => {
               console.log(e);
@@ -37,14 +37,16 @@ function ChainListItem({ name, index, value }: ChainListItemProps) {
         </span>
         <span>{name}</span>
       </span>
-      <span>${numberToWord(value.current.peggedUSD)}</span>
-      <span className="hidden lg:block">
+      <span className="lg:col-span-2">
+        ${numberToWord(value.current.peggedUSD)}
+      </span>
+      <span className="col-span-2 hidden lg:block">
         ${numberToWord(value.circulatingPrevDay.peggedUSD)}
       </span>
-      <span className="hidden lg:block">
+      <span className="col-span-2 hidden lg:block">
         ${numberToWord(value.circulatingPrevWeek.peggedUSD)}
       </span>
-      <span className="hidden lg:block">
+      <span className="col-span-2 hidden lg:block">
         ${numberToWord(value.circulatingPrevMonth.peggedUSD)}
       </span>
     </div>
@@ -62,15 +64,15 @@ export default function ChainList({ data }: ChainListProps) {
       <h1 className="text-xl font-bold text-slate-800 mb-5">
         Chain circulating
       </h1>
-      <div className="sticky top-16 bg-white z-[9] grid grid-cols-2 lg:grid-cols-5 text-lg text-slate-500 p-3 font-medium text-end border-b border-slate-200 mb-2">
-        <span className="text-start">
-          <span className="mr-10">#</span>
+      <div className="sticky top-16 bg-white z-[9] grid grid-cols-2 lg:grid-cols-12 text-lg text-slate-500 p-3 font-medium text-end border-b border-slate-200 mb-2">
+        <span className="lg:col-span-4 text-start flex">
+          <div className="w-10">#</div>
           <span>Chain</span>
         </span>
-        <span>Current</span>
-        <span className="hidden lg:block">Prev Day</span>
-        <span className="hidden lg:block">Prev Week</span>
-        <span className="hidden lg:block">Prev Month</span>
+        <span className="lg:col-span-2">Current</span>
+        <span className="col-span-2 hidden lg:block">Prev Day</span>
+        <span className="col-span-2 hidden lg:block">Prev Week</span>
+        <span className="col-span-2 hidden lg:block">Prev Month</span>
       </div>
       {chainCirculating.map(([key, value], index) => (
         <ChainListItem name={key} index={index} value={value} key={key} />
