@@ -1,6 +1,6 @@
 export default function Navigation() {
   return (
-    <header className="sticky top-0 bg-white/60 backdrop-blur-2xl backdrop-filter z-[10]">
+    <header className="sticky top-0 bg-white/60 backdrop-blur-2xl backdrop-filter z-[10] px-5 lg:px-0">
       <div className="flex justify-between py-3 border-b border-slate-200 max-w-7xl mx-auto">
         <div className="flex items-center">
           <h1 className="text-4xl font-bold text-slate-900 flex items-center">

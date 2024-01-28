@@ -43,10 +43,10 @@ function PoolListItem({ pool, index }: { pool: ProjectYield; index: number }) {
         </span>
         <span>{pool.project}</span>
       </span>
-      <span>{pool.symbol}</span>
+      <span className="hidden lg:block">{pool.symbol}</span>
       <span className="hidden lg:block">{pool.apyBase}</span>
       <span className="hidden lg:block">{pool.apyMean30d}</span>
-      <span className="hidden lg:block">${numberToWord(pool.tvlUsd)}</span>
+      <span>${numberToWord(pool.tvlUsd)}</span>
     </div>
   );
 }
@@ -65,9 +65,9 @@ export default function PoolList({
           <span className="mr-10">#</span>
           <span>Chain</span>
         </span>
-        <span>Symbol</span>
-        <span>APY</span>
-        <span>APY 30d</span>
+        <span className="hidden lg:block">Symbol</span>
+        <span className="hidden lg:block">APY</span>
+        <span className="hidden lg:block">APY 30d</span>
         <span>TVL</span>
       </div>
       {isLoading &&
