@@ -97,6 +97,12 @@ export default function ChartArea({
         <div style={{ width: "100%", height: 300 }}>
           <ResponsiveContainer>
             <AreaChart data={historicalTVL}>
+              <defs>
+                <linearGradient id="colorUv" x1="1" y1="0" x2="0" y2="1">
+                  <stop offset="20%" stopColor="#9333ea" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#9333ea" stopOpacity={0.2} />
+                </linearGradient>
+              </defs>
               <CartesianGrid
                 vertical={false}
                 strokeDasharray="0"
@@ -122,8 +128,8 @@ export default function ChartArea({
                 isAnimationActive={false}
                 type="monotone"
                 dataKey="value"
-                stroke="#94a3b8"
-                fill="#cbd5e1"
+                stroke="#9333ea"
+                fill="url(#colorUv)"
               />
             </AreaChart>
           </ResponsiveContainer>

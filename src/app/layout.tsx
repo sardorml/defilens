@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import SideMenu from "@/components/home/SideMenu";
 import Link from "next/link";
 
-const noto = Roboto({
+const noto = Ubuntu({
   subsets: ["latin"],
-  weight: ["100", "300", "400", "500", "700", "900"],
+  weight: ["300", "400", "500", "700"],
 });
 
 export const metadata: Metadata = {

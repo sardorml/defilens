@@ -22,13 +22,13 @@ export default function ChartFilterSelector({
     <RadioGroup
       value={selected}
       onChange={handleChange}
-      className="flex bg-rose-100 rounded-lg p-1 cursor-pointer w-fit"
+      className="flex bg-slate-200 rounded-lg p-1 cursor-pointer w-fit"
     >
       {options.map((option) => (
         <RadioGroup.Option
           value={option.value}
           className={({ checked }) =>
-            `${checked ? "bg-rose-50 rounded-lg" : ""} px-2 py-px`
+            `${checked ? "bg-slate-50 rounded-lg" : ""} px-2 py-px`
           }
           onClick={handleFilterChange}
           key={option.value}

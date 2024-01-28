@@ -15,7 +15,7 @@ export default async function Navigation() {
       <div className="flex justify-between py-3 border-b border-slate-200 max-w-7xl mx-auto">
         <div className="flex items-center">
           <h1 className="text-4xl font-bold text-slate-900 flex items-center">
-            <span className="text-rose-400">defi</span>
+            <span className="text-rose-500">defi</span>
             <span className="text-slate-700">lens</span>
           </h1>
         </div>
