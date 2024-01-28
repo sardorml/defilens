@@ -48,14 +48,14 @@ export default function ChartTVL({
       {!isLoading && (
         <div className="flex justify-between mb-10">
           <div className="flex flex-col w-2/3">
-            <h1 className="text-3xl font-bold text-slate-900 ">Value Locked</h1>
+            <h1 className="text-3xl font-bold text-slate-800 ">Value Locked</h1>
             <span className="text-md text-slate-600">
               Historical TVL (excludes liquid staking and double counted tvl) of
               DeFi on all chains
             </span>
           </div>
           <div className="flex flex-col items-end">
-            <h1 className="text-3xl font-bold text-slate-900">
+            <h1 className="text-3xl font-bold text-slate-800">
               $
               {isLoading
                 ? 0

@@ -9,6 +9,14 @@ import PoolList from "@/components/yield/PoolList";
 import { groupProjectsByChain } from "@/helpers";
 import { useEffect, useState } from "react";
 
+function prepareAutoCompleteData(data: GroupedYield) {
+  if (!data) return [];
+  const result: DataPoint[] = Object.entries(data).map(([key], index) => {
+    return { id: key, name: key };
+  });
+  return result;
+}
+
 interface GroupedYield {
   [key: string]: ProjectYield[];
 }
@@ -29,13 +37,6 @@ export default function Yield() {
     });
   }, []);
 
-  function prepareAutoCompleteData(data: GroupedYield) {
-    if (!data) return [];
-    const result: DataPoint[] = Object.entries(data).map(([key], index) => {
-      return { id: key, name: key };
-    });
-    return result;
-  }
   function handleSelectChange(value: DataPoint) {
     console.log(value);
     setSelectedChainProjects(pools[value.id]);

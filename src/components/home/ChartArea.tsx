@@ -122,8 +122,8 @@ export default function ChartArea({
                 isAnimationActive={false}
                 type="monotone"
                 dataKey="value"
-                stroke="#10b981"
-                fill="#34d399"
+                stroke="#94a3b8"
+                fill="#cbd5e1"
               />
             </AreaChart>
           </ResponsiveContainer>

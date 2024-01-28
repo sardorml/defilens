@@ -68,7 +68,7 @@ export default function SideMenu() {
     return (
       <Link href={link} className="flex items-center my-2 cursor-pointer group">
         {/* Icon */}
-        <div className="bg-stone-200/50 p-[5px] rounded-lg">
+        <div className="bg-rose-200/50 p-[5px] rounded-lg">
           {React.createElement(icon, {
             className: "h-6 w-6 group-hover:text-slate-950 text-slate-950",
           })}

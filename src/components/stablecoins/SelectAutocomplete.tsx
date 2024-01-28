@@ -37,13 +37,13 @@ export default function SelectAutocomplete({
       <div className="relative z-[9]">
         <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
           <Combobox.Input
-            className="w-full border-none py-3 pl-3 pr-10 text-base leading-5 text-gray-900 focus:ring-0"
+            className="w-full border-none py-3 pl-3 pr-10 text-base leading-5 text-slate-900 focus:ring-0"
             displayValue={(item: any) => item.name}
             onChange={(event) => setQuery(event.target.value)}
           />
           <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
             <ChevronUpDownIcon
-              className="h-5 w-5 text-gray-400"
+              className="h-5 w-5 text-slate-400"
               aria-hidden="true"
             />
           </Combobox.Button>
@@ -57,7 +57,7 @@ export default function SelectAutocomplete({
         >
           <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-md ring-1 ring-black/5 focus:outline-none sm:text-base">
             {filteredData.length === 0 && query !== "" ? (
-              <div className="relative cursor-default select-none px-4 py-3 text-gray-700">
+              <div className="relative cursor-default select-none px-4 py-3 text-slate-700">
                 Nothing found.
               </div>
             ) : (
@@ -66,7 +66,7 @@ export default function SelectAutocomplete({
                   key={item.id}
                   className={({ active }) =>
                     `relative cursor-default select-none py-3 pl-10 pr-4 ${
-                      active ? "bg-teal-600 text-white" : "text-gray-900"
+                      active ? "bg-rose-300 text-white" : "text-slate-900"
                     }`
                   }
                   value={item}
