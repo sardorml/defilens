@@ -66,7 +66,7 @@ export default function SelectAutocomplete({
                   key={item.id}
                   className={({ active }) =>
                     `relative cursor-default select-none py-3 pl-10 pr-4 ${
-                      active ? "bg-rose-300 text-white" : "text-slate-900"
+                      active ? "bg-rose-400 text-white" : "text-slate-900"
                     }`
                   }
                   value={item}
