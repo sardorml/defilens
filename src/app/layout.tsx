@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import SideMenu from "@/components/home/SideMenu";
+import Link from "next/link";
 
 const noto = Roboto({
   subsets: ["latin"],
@@ -28,8 +29,12 @@ export default function RootLayout({
             <SideMenu />
             <div className="fixed bottom-12">
               <div className="flex flex-col">
-                <span className="text-md text-slate-600">Twitter</span>
-                <span className="text-md text-slate-600">Github</span>
+                <Link href="https://sardor.xyz" target="_blank">
+                  <span className="text-md text-slate-600">About Me</span>
+                </Link>
+                <Link href="https://defillama.com" target="_blank">
+                  <span className="text-md text-slate-600">Data source</span>
+                </Link>
               </div>
             </div>
           </div>
