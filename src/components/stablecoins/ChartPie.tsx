@@ -40,7 +40,8 @@ const CustomTooltip = ({
   return null;
 };
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#ff0000"];
+// Warm and happy colors
+const COLORS = ["#FF0060", "#0079FF", "#00DFA2", "#F6FA70", "#89ffcc"];
 
 export type ChartPieDataPoint = {
   name: string;
