@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import SideMenu from "@/components/home/SideMenu";
 import Link from "next/link";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const noto = Ubuntu({
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function RootLayout({
           </div>
           <div className="mt-10 w-full px-5 lg:px-0">{children}</div>
         </div>
+        <SpeedInsights />
       </body>
     </html>
   );
