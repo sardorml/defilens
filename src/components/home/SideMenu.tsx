@@ -13,35 +13,37 @@ import {
 import Link from "next/link";
 import {} from "@heroicons/react/24/outline";
 
+export const menuList = [
+  {
+    name: "Home",
+    link: "/",
+    icon: HomeIcon,
+  },
+  {
+    name: "Fees",
+    link: "/fees",
+    icon: ChartBarSquareIcon,
+  },
+  {
+    name: "Stablecoins",
+    link: "/stablecoins",
+    icon: CurrencyDollarIcon,
+  },
+  {
+    name: "Yield",
+    link: "/yield",
+    icon: ChartPieIcon,
+  },
+  {
+    name: "Bridges",
+    link: "/bridges",
+    icon: ArrowsRightLeftIcon,
+  },
+];
+
 export default function SideMenu() {
   const pathname = usePathname();
-  const menuList = [
-    {
-      name: "Home",
-      link: "/",
-      icon: HomeIcon,
-    },
-    {
-      name: "Fees",
-      link: "/fees",
-      icon: ChartBarSquareIcon,
-    },
-    {
-      name: "Stablecoins",
-      link: "/stablecoins",
-      icon: CurrencyDollarIcon,
-    },
-    {
-      name: "Yield",
-      link: "/yield",
-      icon: ChartPieIcon,
-    },
-    {
-      name: "Bridges",
-      link: "/bridges",
-      icon: ArrowsRightLeftIcon,
-    },
-  ];
+
   function isActive(link: string) {
     return pathname === link;
   }
