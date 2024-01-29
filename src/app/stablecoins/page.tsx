@@ -46,6 +46,7 @@ function prepareAutoCompleteData(data: Stablecoin[]) {
 }
 function getTopFive(data: ChartPieDataPoint[]) {
   if (!data) return [];
+  if (data.length <= 5) return data;
   const topFive = data.slice(0, 5);
   const other = data.slice(5);
   const otherTotal = other.reduce((acc, curr) => acc + curr.value, 0);
