@@ -46,11 +46,14 @@ export default function RootLayout({
             <SideMenu />
             <div className="fixed bottom-12">
               <div className="flex flex-col">
+                <Link href="https://twitter.com/defilensxyz" target="_blank">
+                  <span className="text-base text-slate-600">Twitter</span>
+                </Link>
                 <Link href="https://sardor.xyz" target="_blank">
-                  <span className="text-md text-slate-600">About Me</span>
+                  <span className="text-base text-slate-600">About Me</span>
                 </Link>
                 <Link href="https://defillama.com" target="_blank">
-                  <span className="text-md text-slate-600">Data source</span>
+                  <span className="text-base text-slate-600">Data source</span>
                 </Link>
               </div>
             </div>
