@@ -7,7 +7,27 @@ import SelectAutocomplete, {
 } from "@/components/stablecoins/SelectAutocomplete";
 import PoolList from "@/components/yield/PoolList";
 import { groupProjectsByChain } from "@/helpers";
+import { Metadata } from "next";
 import { useEffect, useState } from "react";
+
+export const metadata: Metadata = {
+  title: "Defilens - Stablecoins",
+  description:
+    "Analyze yield data for DeFi protocols - Explore and compare yield farming opportunities, APYs, and rewards across various decentralized finance platforms.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://defilens.xyz",
+    images: [
+      {
+        url: "https://defilens.xyz/defilens.png",
+        width: 1200,
+        height: 630,
+        alt: "Defilens",
+      },
+    ],
+  },
+};
 
 function prepareAutoCompleteData(data: GroupedYield) {
   if (!data) return [];

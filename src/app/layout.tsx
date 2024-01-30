@@ -13,8 +13,23 @@ const noto = Ubuntu({
 });
 
 export const metadata: Metadata = {
-  title: "Defilens - defi and beyond",
-  description: "Get a glimpse of the future of finance",
+  title: "Defilens - Defi and beyond | TVL",
+  description:
+    "Track analytics and metrics for various DeFi protocols including bridges, fees, stablecoins, yield, TVL, and more.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://defilens.xyz",
+    title: "Defilens - Defi and beyond",
+    images: [
+      {
+        url: "https://defilens.xyz/defilens.png",
+        width: 1200,
+        height: 630,
+        alt: "Defilens",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

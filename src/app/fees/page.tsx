@@ -11,6 +11,26 @@ import {
 import SkeletonHomePageHeader from "@/components/skeleton/SkeletonHomePageHeader";
 import { filterTVLHistoryDataPointsByDays, numberToWord } from "@/helpers";
 import { useEffect, useMemo, useState } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Defilens - Defi fees",
+  description:
+    "Analyze fees data for DeFi protocols - Explore and compare transaction fees across various decentralized finance platforms.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://defilens.xyz",
+    images: [
+      {
+        url: "https://defilens.xyz/defilens.png",
+        width: 1200,
+        height: 630,
+        alt: "Defilens",
+      },
+    ],
+  },
+};
 
 function FeesInfoCard({ fees, isLoading }: any) {
   const items = [

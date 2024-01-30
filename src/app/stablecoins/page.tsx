@@ -10,7 +10,27 @@ import SelectAutocomplete, {
   DataPoint,
 } from "@/components/stablecoins/SelectAutocomplete";
 import { numberToWord } from "@/helpers";
+import { Metadata } from "next";
 import { useEffect, useState } from "react";
+
+export const metadata: Metadata = {
+  title: "Defilens - Stablecoins",
+  description:
+    "Track stablecoins data for DeFi protocols - Monitor stablecoin usage, liquidity, and market capitalization across various decentralized finance platforms.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://defilens.xyz",
+    images: [
+      {
+        url: "https://defilens.xyz/defilens.png",
+        width: 1200,
+        height: 630,
+        alt: "Defilens",
+      },
+    ],
+  },
+};
 
 function CardData({ title, value }: { title: string; value: string }) {
   return (
