@@ -56,11 +56,9 @@ export default function ProtocolChart({
             </div>
           </div>
           <span className="font-bold text-4xl text-slate-600">
-            {isLoading
-              ? 0
-              : numberToWord(
-                  protocol.tvl[protocol.tvl.length - 1].totalLiquidityUSD
-                )}
+            {numberToWord(
+              protocol.tvl[protocol.tvl.length - 1].totalLiquidityUSD
+            )}
           </span>
         </div>
       )}
